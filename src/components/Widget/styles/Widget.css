@@ -1,0 +1,172 @@
+.widget {
+  position: fixed;
+  top: 20px;
+  width: 280px;
+  z-index: 1000;
+  background: var(--bg);
+  border: 2px solid var(--bg-dark);
+  color: var(--text);
+  box-shadow:
+    0 0 0 1px var(--bg-dark),
+    0 0 20px rgba(255, 255, 255, 0.1);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Snapped widgets sit vertically centred against their edge. */
+.widget.dock-left,
+.widget.dock-right {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.widget.dock-left {
+  left: 20px;
+}
+
+.widget.dock-right {
+  right: 20px;
+}
+
+.widget.dragging {
+  z-index: 1002;
+  opacity: 0.92;
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 0 24px rgba(0, 180, 216, 0.35);
+}
+
+.widget::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+.widget-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px 8px;
+  border-bottom: 2px solid var(--bg-dark);
+  background: linear-gradient(45deg, var(--bg) 0%, var(--bg-dark) 100%);
+  cursor: move;
+  user-select: none;
+  touch-action: none;
+}
+
+.widget-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.widget-content {
+  position: relative;
+  z-index: 1;
+  padding: 12px 16px 16px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  opacity: 1;
+  transition:
+    opacity 0.3s ease 0.1s,
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.3s ease;
+}
+
+.widget.collapsed {
+  width: 200px;
+}
+
+.widget.collapsed .widget-header {
+  border-bottom-color: transparent;
+}
+
+.widget.collapsed .widget-content {
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.3s ease,
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.3s ease;
+}
+
+/* ---------- Snap zones (visible while dragging) ---------- */
+
+.snap-zone {
+  position: fixed;
+  top: 10px;
+  bottom: 10px;
+  width: 300px;
+  z-index: 1001;
+  pointer-events: none;
+  border: 2px dashed rgba(0, 180, 216, 0.25);
+  background: rgba(0, 129, 167, 0.04);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.snap-zone-left {
+  left: 10px;
+}
+
+.snap-zone-right {
+  right: 10px;
+}
+
+.snap-zone.active {
+  border-style: solid;
+  border-color: var(--accent-light);
+  background: rgba(0, 129, 167, 0.15);
+  box-shadow:
+    0 0 20px rgba(0, 180, 216, 0.35),
+    inset 0 0 30px rgba(0, 180, 216, 0.15);
+}
+
+@media (max-width: 768px) {
+  .widget {
+    width: 250px;
+  }
+
+  .widget.dock-left,
+  .widget.dock-right {
+    top: auto;
+    bottom: 10px;
+    transform: none;
+  }
+
+  .widget.dock-left {
+    left: 10px;
+  }
+
+  .widget.dock-right {
+    right: 10px;
+  }
+
+  .snap-zone {
+    width: 120px;
+  }
+
+  .widget.collapsed {
+    width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .widget {
+    width: calc(100vw - 20px);
+  }
+
+  .widget.collapsed {
+    width: 150px;
+  }
+}

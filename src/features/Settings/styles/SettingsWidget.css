@@ -1,0 +1,146 @@
+.settings-section + .settings-section {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 2px solid var(--bg-dark);
+}
+
+.settings-heading {
+  margin: 0 0 10px;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.settings-label {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.settings-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.settings-toggles:last-child {
+  margin-bottom: 0;
+}
+
+.settings-select-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.select {
+  flex: 1;
+  min-width: 0;
+  appearance: none;
+  padding: 5px 26px 5px 8px;
+  background:
+    linear-gradient(45deg, transparent 50%, var(--text) 50%) calc(100% - 13px) 50% / 5px 5px no-repeat,
+    linear-gradient(135deg, var(--text) 50%, transparent 50%) calc(100% - 8px) 50% / 5px 5px no-repeat,
+    var(--bg-dark);
+  border: 1px solid var(--border-soft);
+  border-radius: 0;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.select:hover,
+.select:focus {
+  border-color: var(--accent-light);
+  outline: none;
+}
+
+.select option {
+  background: var(--bg-dark);
+}
+
+.settings-rules {
+  width: 100%;
+  padding: 6px 8px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-soft);
+  font-family: var(--font-code);
+  font-size: 12px;
+  line-height: 18px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.settings-rules:focus {
+  border-color: var(--accent-light);
+}
+
+.settings-rules::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.settings-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.settings-errors {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--del);
+}
+
+.settings-shortcuts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 6px 10px;
+  align-items: center;
+  margin: 0;
+  font-size: 12px;
+}
+
+.settings-shortcuts dt {
+  white-space: nowrap;
+}
+
+.settings-shortcuts dd {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.settings-shortcuts kbd {
+  display: inline-block;
+  min-width: 18px;
+  padding: 1px 4px;
+  background: var(--bg-dark);
+  border: 1px solid var(--border-soft);
+  font-family: monospace;
+  font-size: 10px;
+  text-align: center;
+}
+
+.settings-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 2px solid var(--bg-dark);
+  text-align: center;
+}
